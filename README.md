@@ -85,20 +85,20 @@ El proyecto tiene cuatro fases principales:
   4_Biocatch_data_augmentation_AWS.ipynb
   5_EDA_augmented_data.ipynb
   6_Data_Balancing_AD_Pipeline.ipynb
-  7_Modeling_Vishing_AD_AWS_exec v2.ipynb
+  7_Modeling_Vishing_AD_AWS.ipynb
 
 ┌────────────────────────────────────────────────────────────────┐
 │ FASE 3 — Experimentación dirigida con XGBoost (AWS SageMaker)  │
 └────────────────────────────────────────────────────────────────┘
         ↓
-  9_XGBoost_training_exec.ipynb
+  8_XGBoost_training_AWS.ipynb
 
 ┌────────────────────────────────────────────────────────────────┐
 │ FASE 4 — Generación de datos para simulación de inferencia     │
 │          (AWS SageMaker)                                       │
 └────────────────────────────────────────────────────────────────┘
         ↓
-  10_Inference_Data_Generation.ipynb
+  9_Inference_Data_Generation.ipynb
 ```
 
 ---

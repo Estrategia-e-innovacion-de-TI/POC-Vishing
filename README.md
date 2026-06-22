@@ -216,7 +216,7 @@ Aplica las mismas 4 técnicas de resampling en los mismos 3 ratios objetivo (10%
 
 ---
 
-### 7. `7_Modeling_Vishing_AD_AWS_exec v2.ipynb` — Modelado sobre datos aumentados (AWS SageMaker)
+### 7. `7_Modeling_Vishing_AD_AWS.ipynb` — Modelado sobre datos aumentados (AWS SageMaker)
 
 **Entrada:** 12 datasets balanceados del Notebook 6 + holdout de 200K sesiones
 **Salida:** 48 modelos serializados en S3 como `VishingModelWrapper`
@@ -242,7 +242,7 @@ Los modelos se serializan con joblib y se almacenan en S3: `s3://poc-fraude-vish
 
 ---
 
-### 8. `9_XGBoost_training_exec.ipynb` — Experimentación dirigida con XGBoost (AWS SageMaker)
+### 8. `8_XGBoost_training_AWS.ipynb` — Experimentación dirigida con XGBoost (AWS SageMaker)
 
 **Entrada:** 13 datasets de data aumentada (12 balanceados del Notebook 6 + raw 1M) + 13 datasets de data original (12 balanceados del Notebook 2 + raw 50K)
 **Salida:** 182 modelos serializados en S3 como `VishingModelWrapper`
@@ -267,7 +267,7 @@ Incluye análisis comparativo de las 182 combinaciones: tabla ordenada por PR-AU
 
 ---
 
-### 9. `10_Inference_Data_Generation.ipynb` — Generación de datos para simulación de inferencia (AWS SageMaker)
+### 9. `9_Inference_Data_Generation.ipynb` — Generación de datos para simulación de inferencia (AWS SageMaker)
 
 **Entrada:** `raw_data/biocatch_sinthetic_data.csv` (50K, usado solo como referencia estadística)
 **Salida:** `data/inference_simulation/inference_100k.parquet` (100K sesiones 100% sintéticas)
@@ -291,46 +291,47 @@ Genera un dataset de **100,000 sesiones completamente sintéticas** (ninguna fil
 | `4_Biocatch_data_augmentation_AWS.ipynb` | **AWS** | 50K CSV | 1M parquet |
 | `5_EDA_augmented_data.ipynb` | Local | 1M parquet | Análisis comparativo |
 | `6_Data_Balancing_AD_Pipeline.ipynb` | Local | 1M parquet | 12 parquets balanceados |
-| `7_Modeling_Vishing_AD_AWS_exec v2.ipynb` | **AWS** | 12 parquets + holdout | 48 wrappers en S3 |
-| `9_XGBoost_training_exec.ipynb` | **AWS** | 26 datasets (orig + aumentado) + holdouts | 182 wrappers XGBoost en S3 |
-| `10_Inference_Data_Generation.ipynb` | **AWS** | 50K CSV (referencia) | 100K parquet 100% sintético |
+| `7_Modeling_Vishing_AD_AWS.ipynb` | **AWS** | 12 parquets + holdout | 48 wrappers en S3 |
+| `8_XGBoost_training_AWS.ipynb` | **AWS** | 26 datasets (orig + aumentado) + holdouts | 182 wrappers XGBoost en S3 |
+| `9_Inference_Data_Generation.ipynb` | **AWS** | 50K CSV (referencia) | 100K parquet 100% sintético |
 
 ---
 
 ## Estructura de Directorios
 
 ```
-Vishing_synth_data_GenAI/
+POC Vishing/
 ├── raw_data/
-│   ├── biocatch_sinthetic_data.csv                    ← Dataset original (50K)
-│   └── diccionario_datos_biocatch_sintetico.md        ← Diccionario de datos
+│   ├── biocatch_sinthetic_data.csv     --- Dataset original (50K)
+│   └── diccionario_datos_biocatch_sintetico.md       
 ├── data/
 │   ├── augmented_data/
-│   │   └── dataset_1M_vishing_.parquet                ← Dataset aumentado (1M)
+│   │   └── dataset_1M_vishing_.parquet   --- Dataset aumentado (1M)
 │   └── balanced/
-│       ├── original/                                  ← 12 variantes balanceadas del 50K
+│       ├── original/   ---  12 variantes balanceadas del 50K
 │       │   ├── random_oversampling/{10,20,25}.csv
 │       │   ├── smote/{10,20,25}.csv
 │       │   ├── borderline_smote/{10,20,25}.csv
 │       │   └── smote_undersampling/{10,20,25}.csv
-│       └── augmented/                                 ← 12 variantes balanceadas del 1M
+│       └── augmented/    ---  12 variantes balanceadas del 1M
 │           ├── random_oversampling/{10,20,25}.parquet
 │           ├── smote/{10,20,25}.parquet
 │           ├── borderline_smote/{10,20,25}.parquet
 │           └── smote_undersampling/{10,20,25}.parquet
 │   └── inference_simulation/
-│       └── inference_100k.parquet                     ← Dataset 100% sintético para simular inferencia
-├── modelos/                                           ← Modelos locales (espejo de S3)
+│       └── inference_100k.parquet                
+├── modelos/                                           
 ├── 1_EDA.ipynb
 ├── 2_Data_Balancing_Pipeline.ipynb
 ├── 3_Modeling_Vishing_Pipeline.ipynb
 ├── 4_Biocatch_data_augmentation_AWS.ipynb
 ├── 5_EDA_augmented_data.ipynb
 ├── 6_Data_Balancing_AD_Pipeline.ipynb
-├── 7_Modeling_Vishing_AD_AWS_exec v2.ipynb
-├── 9_XGBoost_training_exec.ipynb
-├── 10_Inference_Data_Generation.ipynb
-├── Mejorar.md                                         ← Notas de mejoras pendientes
+├── 7_Modeling_Vishing_AD_AWS.ipynb
+├── 8_XGBoost_training_AWS.ipynb
+├── 9_Inference_Data_Generation.ipynb    
+├── 10_Realtime_Simulation.ipynb      --- Simulacion de inferencia XGBoost
+├── 11_EDA_Inference.ipynb       --- Analisis Estadistico de dataset generado para inferencia    
 └── requirements.txt
 ```
 

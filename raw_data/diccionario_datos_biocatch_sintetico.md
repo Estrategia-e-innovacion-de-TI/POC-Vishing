@@ -194,5 +194,3 @@ Simulan los outputs que BioCatch devuelve vía API al banco.
 2. **Correlaciones realistas simuladas**: Por ejemplo, sesiones de vishing tienden a tener simultáneamente llamada activa + tecleo segmentado + alta hesitación + sesión larga + beneficiario nuevo.
 
 3. **Ruido intencional**: No todas las sesiones de vishing tienen todos los indicadores activos (hay overlap con sesiones legítimas), para simular la complejidad real del problema.
-
-4. **Uso sugerido**: El campo `is_vishing` es la variable objetivo para entrenamiento supervisado. Los campos `biocatch_*_score` e `*_indicator` simulan los outputs actuales de BioCatch y pueden excluirse del feature set del modelo propio para evitar data leakage, o incluirse como features complementarios si el objetivo es construir un modelo que combine señales propias con las de BioCatch.
